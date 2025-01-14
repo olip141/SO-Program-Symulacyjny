@@ -1,26 +1,33 @@
 from generateData import ProcessGenerator
-from generateData import Process
-from fcfs import fcfs
-from lcfs import lcfs
+from generateData import PageSequenceGenerator
+from fcfs import fcfs_with_steps
+from lcfs import lcfs_with_steps
+from fifo import fifo_with_steps
+from lru import lru_with_steps
 
 def main():
 
-    # Generowanie x procesów z czasami nadejścia x i czasami wykonania x
-    generator = ProcessGenerator(num_processes=5, arrival_range=(0, 10), burst_mean=5, burst_std=2)
+    # Funckja main prezentuje przykładowe użycie algorytmów FCFS, LCFS, FIFO i LRU na przykładowych wybieralnych danych
+
+    # Dane procesów dla algorytmów FCFS i LCFS
+    generator = ProcessGenerator(num_processes=5, arrival_range=(0, 10), arrival_std=2, burst_range=(4, 7), burst_std=2)
     processes = generator.generate()
+  
+    # Dane dla algorytmów FIFO i LRU
+    page_sequence_generator = PageSequenceGenerator(sequence_length=20, page_range=10)  
+    page_sequence = page_sequence_generator.generate()
+    page_frames = 4 
+  
+    # Wywołanie funkcji pokazujących działanie algorytmów FCFS i LCFS krok po kroku
+    fcfs_with_steps(processes)
+    lcfs_with_steps(processes)
 
-   # Przykładowe dane wejściowe
-    '''
-    processes = [
-    Process(1, 0, 5),
-    Process(2, 2, 3),
-    Process(3, 4, 1),
-    Process(4, 6, 4),
-    Process(5, 8, 2)
-    ]
-    '''
-    fcfs(processes)
-    lcfs(processes)
+    print("\n------------------------------------------------------------------------------")
 
+    print("\nSekwencja stron:", page_sequence)
+    # Wywołanie funkcji pokazujących działanie algorytmów FIFO i LRU krok po kroku
+    fifo_with_steps(page_sequence, page_frames)
+    lru_with_steps(page_sequence, page_frames)
+    
 if __name__ == "__main__":
     main()
