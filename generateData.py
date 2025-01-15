@@ -30,7 +30,7 @@ class ProcessGenerator:
     def generate(self) -> List[Process]:
 
         # Funkcja generuje listę procesów z losowymi czasami nadejścia oraz czasami wykonania.
-        # Procesy są następnie sortowane po czasie nadejścia.
+        # Procesy są następnie sortowane po czasie nadejścia
 
         arrival_mean = (self.arrival_range[0] + self.arrival_range[1]) / 2                                              # Obliczenie średniego czasu nadejścia (średnia z zakresu)
         arrival_times = np.maximum(0, np.random.normal(arrival_mean, self.arrival_std, self.num_processes).astype(int)) # Generowanie czasów nadejścia z rozkładu normalnego (z odchyleniem standardowym)
@@ -44,7 +44,7 @@ class ProcessGenerator:
          # Sortowanie procesów po czasie nadejścia
         processes.sort(key=lambda p: p.arrival_time)
 
-        return processes # Zwracamy posortowaną listę procesów
+        return processes # Zwracanie posortowaną listę procesów
     
     
 class PageSequenceGenerator:
@@ -53,13 +53,13 @@ class PageSequenceGenerator:
 
     def __init__(self, sequence_length: int, page_range: int):
 
-        # Funkcja inicjalizuje obiekt klasy PageSequenceGenerator, który generuje losowe sekwencje stron.
+        # Funkcja inicjalizuje obiekt klasy PageSequenceGenerator, który generuje losowe sekwencje stron
 
         self.sequence_length = sequence_length
         self.page_range = page_range
 
     def generate(self) -> List[int]:
 
-        # Funkcja generuje losową sekwencję stron o określonej długości i zakresie stron.
+        # Funkcja generuje losową sekwencję stron o określonej długości i zakresie stron
         
         return np.random.randint(0, self.page_range, self.sequence_length).tolist()

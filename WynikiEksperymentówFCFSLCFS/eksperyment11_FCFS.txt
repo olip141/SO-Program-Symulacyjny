@@ -1,0 +1,3 @@
+Eksperyment nr: 11
+Algorytm: FCFS
+Œredni czas oczekiwania dla FCFS: 1276.035

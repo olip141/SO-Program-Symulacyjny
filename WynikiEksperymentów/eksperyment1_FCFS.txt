@@ -1,3 +1,0 @@
-Eksperyment nr: 1
-Algorytm: FCFS
-Œredni czas oczekiwania dla FCFS: 60.0

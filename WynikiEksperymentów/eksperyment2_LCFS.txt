@@ -1,3 +1,0 @@
-Eksperyment nr: 2
-Algorytm: LCFS
-Œredni czas oczekiwania dla LCFS: 185.0

@@ -12,7 +12,7 @@ def lru(page_sequence, page_frames):
     # Pętla iteruje po kolejnych elementach sekwencji stron łącząc je z indeksem (time)
     for time, page in enumerate(page_sequence):
         if page not in frames:
-            page_faults += 1                                        # Jeśli strona nie jest w ramkach występuje błąd brak strony (page fault)
+            page_faults += 1                                        # Jeśli strona nie jest w ramkach występuje błąd braku strony (page fault)
             if len(frames) >= page_frames:
                 lru_page = min(frames, key=lambda p: recent_use[p]) # Znalezienie strony w ramkach, użytej w jak najmniejszym czasie funkcją min
                 frames.remove(lru_page)                             # Usunięcie strony w ramkach, użytej w jak najmniejszym czasie

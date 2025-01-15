@@ -3,8 +3,21 @@ from fcfs import fcfs
 from lcfs import lcfs
 import os
 
+def save_test_data(test_number, processes):
+    folder = "DaneTestoweFCFSLCFS"
+    os.makedirs(folder, exist_ok=True)
+    filename = os.path.join(folder, f"test_data_{test_number}.txt")
+    with open(filename, 'w') as file:
+        file.write(f"Nr testu: {test_number}\n")
+        file.write("Procesy:\n")
+        file.write("processes = [\n")
+        for process  in processes:
+            file.write(f"Process(name = {process.name}, arrival_time = {process.arrival_time}, burst_time = {process.burst_time}),\n")
+        file.write("]\n")
+
+
 def save_results(filename, average_waiting_time, algorithm_name,test_number):
-    folder = "WynikiEksperymentów"
+    folder = "WynikiEksperymentówFCFSLCFS"
     os.makedirs(folder, exist_ok=True)
     filepath = os.path.join(folder, filename)
     with open(filepath, 'w') as file:
@@ -15,8 +28,10 @@ def save_results(filename, average_waiting_time, algorithm_name,test_number):
 def eksperyment1():
 
     # 25 procesów o losowych czasach nadejścia = (0-100) i wykonania w czasie = 5
-    generator = ProcessGenerator(num_processes=25, arrival_range=(0, 100), arrival_std=0, burst_range=(5, 5), burst_std=0)
+    generator = ProcessGenerator(num_processes=25, arrival_range=(0, 100), arrival_std=20, burst_range=(5, 5), burst_std=0)
     processes = generator.generate()
+
+    save_test_data("1", processes)
 
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
@@ -27,12 +42,13 @@ def eksperyment1():
     save_results("eksperyment1_FCFS.txt", average_waiting_time, "FCFS","1")
     save_results("eksperyment1_LCFS.txt", average_waiting_time2, "LCFS","1")
 
-
 def eksperyment2():
 
     # 75 procesów o losowych czasach nadejścia = (0-100) i wykonania w czasie = 5
-    generator = ProcessGenerator(num_processes=75, arrival_range=(0, 100), arrival_std=0, burst_range=(5, 5), burst_std=0)
+    generator = ProcessGenerator(num_processes=75, arrival_range=(0, 100), arrival_std=20, burst_range=(5, 5), burst_std=0)
     processes = generator.generate()
+
+    save_test_data("2", processes)
 
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
@@ -45,8 +61,10 @@ def eksperyment2():
 
 def eksperyment3():
     # 125 procesów o losowych czasach nadejścia = (0-100) i wykonania w czasie = 5
-    generator = ProcessGenerator(num_processes=125, arrival_range=(0, 100), arrival_std=0, burst_range=(5, 5), burst_std=0)
+    generator = ProcessGenerator(num_processes=125, arrival_range=(0, 100), arrival_std=20, burst_range=(5, 5), burst_std=0)
     processes = generator.generate()
+
+    save_test_data("3", processes)
 
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
@@ -62,6 +80,8 @@ def eksperyment4():
     generator = ProcessGenerator(num_processes=25, arrival_range=(0, 0), arrival_std=0, burst_range=(1, 10), burst_std=0)
     processes = generator.generate()
 
+    save_test_data("4", processes)
+
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
 
@@ -76,6 +96,8 @@ def eksperyment5():
     generator = ProcessGenerator(num_processes=75, arrival_range=(0, 0), arrival_std=0, burst_range=(1, 10), burst_std=0)
     processes = generator.generate()
     
+    save_test_data("5", processes)
+
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
 
@@ -90,6 +112,8 @@ def eksperyment6():
     generator = ProcessGenerator(num_processes=125, arrival_range=(0, 0), arrival_std=0, burst_range=(1, 10), burst_std=0)
     processes = generator.generate()
 
+    save_test_data("6", processes)
+
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
 
@@ -103,6 +127,8 @@ def eksperyment7():
     # 25 procesów o czasie nadejścia wykonania w czasie = 10 z odch. std. = 5
     generator = ProcessGenerator(num_processes=25, arrival_range=(10, 10), arrival_std=4, burst_range=(10, 10), burst_std=5)
     processes = generator.generate()
+
+    save_test_data("7", processes)
     
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
@@ -117,6 +143,8 @@ def eksperyment8():
     # 75 procesów o czasie nadejścia wykonania w czasie = 20 z odch. std. = 5
     generator = ProcessGenerator(num_processes=75, arrival_range=(20, 20), arrival_std=5, burst_range=(20, 20), burst_std=5)
     processes = generator.generate()
+
+    save_test_data("8", processes)
     
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
@@ -132,6 +160,8 @@ def eksperyment9():
     generator = ProcessGenerator(num_processes=125, arrival_range=(30, 30), arrival_std=5, burst_range=(30, 30), burst_std=5)
     processes = generator.generate()
 
+    save_test_data("9", processes)
+
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
 
@@ -145,6 +175,8 @@ def eksperyment10():
     # 200 procesów o losowych czasach nadejścia (0-500) i wykonania w czasie (1-20)
     generator = ProcessGenerator(num_processes=200, arrival_range=(0, 500), arrival_std=10, burst_range=(1, 20), burst_std=5)
     processes = generator.generate()
+
+    save_test_data("10", processes)
 
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
@@ -160,6 +192,8 @@ def eksperyment11():
     generator = ProcessGenerator(num_processes=200, arrival_range=(0, 500), arrival_std=20, burst_range=(1, 20), burst_std=15)
     processes = generator.generate()
 
+    save_test_data("11", processes)
+
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)
 
@@ -173,6 +207,8 @@ def eksperyment12():
     # 250 procesów o losowych czasach nadejścia i wykonania, z dużą zmiennością (odch. std. = 10)
     generator = ProcessGenerator(num_processes=250, arrival_range=(0, 1000), arrival_std=50, burst_range=(1, 50), burst_std=20)
     processes = generator.generate()
+
+    save_test_data("12", processes)
 
     done_procesess, average_waiting_time = fcfs(processes)
     done_procesess2, average_waiting_time2 = lcfs(processes)

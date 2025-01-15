@@ -1,3 +1,0 @@
-Eksperyment nr: 12
-Algorytm: FCFS
-Œredni czas oczekiwania dla FCFS: 2927.632
